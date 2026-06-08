@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #050507;
-  --foreground: #ededf2;
+  --background: #000000;
+  --foreground: #ededee;
 }
 
 * {
@@ -23,30 +23,49 @@ body {
   overflow-x: hidden;
 }
 
-/* Subtle grain / ambient gradient field */
+/* Single restrained, near-neutral ambient glow (Cursor "product under a light").
+   Mostly cool-white with a barely-there cool tint — never a purple wash. */
 .bg-field {
+  background: radial-gradient(
+    48rem 36rem at 50% -6%,
+    rgba(255, 255, 255, 0.07),
+    transparent 62%
+  );
+}
+
+/* The signature soft glow that sits behind the hero product mockup. */
+.glow-hero {
   background:
-    radial-gradient(60rem 60rem at 50% -10%, rgba(124, 140, 255, 0.12), transparent 60%),
-    radial-gradient(40rem 40rem at 90% 20%, rgba(91, 108, 255, 0.08), transparent 55%),
-    radial-gradient(45rem 45rem at 0% 60%, rgba(124, 140, 255, 0.06), transparent 55%);
+    radial-gradient(38rem 24rem at 50% 30%, rgba(124, 140, 255, 0.1), transparent 70%),
+    radial-gradient(60rem 30rem at 50% 0%, rgba(255, 255, 255, 0.06), transparent 65%);
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Product window frame — used to make every visual feel like real app UI. */
+.window-chrome {
+  background: linear-gradient(180deg, #0d0d0f 0%, #09090b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
+    0 40px 80px -40px rgba(0, 0, 0, 0.9);
 }
 
 .text-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #b8bccb 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #9a9aa2 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -55,11 +74,11 @@ body {
 .text-shimmer {
   background: linear-gradient(
     90deg,
-    #6b7280 0%,
+    #4b4b52 0%,
     #ffffff 25%,
-    #a5b0ff 50%,
+    #d8d8de 50%,
     #ffffff 75%,
-    #6b7280 100%
+    #4b4b52 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -69,15 +88,15 @@ body {
 
 .grid-lines {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
   mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
 }
 
 ::selection {
-  background: rgba(124, 140, 255, 0.3);
+  background: rgba(255, 255, 255, 0.18);
   color: #fff;
 }
 
@@ -86,7 +105,7 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #050507;
+  background: #000;
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.08);

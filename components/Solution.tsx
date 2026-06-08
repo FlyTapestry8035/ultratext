@@ -55,7 +55,7 @@ export default function Solution() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="glass-strong relative mt-14 overflow-hidden rounded-3xl p-2 shadow-2xl shadow-black/50 sm:p-6">
+          <div className="window-chrome relative mt-14 overflow-hidden p-2 sm:p-6">
             <svg
               viewBox={`0 0 ${W} ${H}`}
               className="h-auto w-full"
@@ -64,8 +64,8 @@ export default function Solution() {
             >
               <defs>
                 <radialGradient id="kgCore" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#9aa6ff" />
-                  <stop offset="100%" stopColor="#4a59e6" />
+                  <stop offset="0%" stopColor="#b3bbf0" />
+                  <stop offset="100%" stopColor="#6b78d6" />
                 </radialGradient>
                 <filter id="kgGlow" x="-60%" y="-60%" width="220%" height="220%">
                   <feGaussianBlur stdDeviation="5" result="b" />
@@ -87,7 +87,7 @@ export default function Solution() {
                     y1={na.y}
                     x2={nb.x}
                     y2={nb.y}
-                    stroke="rgba(124,140,255,0.28)"
+                    stroke="rgba(255,255,255,0.18)"
                     strokeWidth={1.25}
                     initial={{ pathLength: 0, opacity: 0 }}
                     whileInView={{ pathLength: 1, opacity: 1 }}
@@ -106,7 +106,7 @@ export default function Solution() {
                     <motion.circle
                       key={`p-${i}`}
                       r={3}
-                      fill="#a5b0ff"
+                      fill="#e4e4e8"
                       initial={{ cx: 500, cy: 280, opacity: 0 }}
                       whileInView={{
                         cx: [500, nb.x],

@@ -4,36 +4,12 @@ import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 
 const cases = [
-  {
-    role: "Founder",
-    q: "What changed in the business this week?",
-    accent: "from-indigo-500/20 to-transparent",
-  },
-  {
-    role: "Sales",
-    q: "Summarize every conversation with Acme Corp.",
-    accent: "from-sky-500/20 to-transparent",
-  },
-  {
-    role: "Finance",
-    q: "Explain revenue changes this month.",
-    accent: "from-emerald-500/20 to-transparent",
-  },
-  {
-    role: "Operations",
-    q: "What projects are blocked?",
-    accent: "from-amber-500/20 to-transparent",
-  },
-  {
-    role: "Support",
-    q: "What issues are customers reporting?",
-    accent: "from-rose-500/20 to-transparent",
-  },
-  {
-    role: "Agent Builder",
-    q: "Give my agent everything it needs to know.",
-    accent: "from-violet-500/20 to-transparent",
-  },
+  { role: "Founder", q: "What changed in the business this week?" },
+  { role: "Sales", q: "Summarize every conversation with Acme Corp." },
+  { role: "Finance", q: "Explain revenue changes this month." },
+  { role: "Operations", q: "What projects are blocked?" },
+  { role: "Support", q: "What issues are customers reporting?" },
+  { role: "Agent Builder", q: "Give my agent everything it needs to know." },
 ];
 
 export default function UseCases() {
@@ -52,11 +28,9 @@ export default function UseCases() {
               <motion.div
                 whileHover={{ y: -6 }}
                 transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                className="group glass relative h-full overflow-hidden rounded-2xl p-6"
+                className="group glass relative h-full overflow-hidden rounded-2xl p-6 transition-colors hover:border-white/15 hover:bg-white/[0.04]"
               >
-                <div
-                  className={`pointer-events-none absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-100 ${c.accent}`}
-                />
+                <div className="pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="relative flex h-full flex-col">
                   <span className="text-xs font-medium uppercase tracking-[0.18em] text-white/40">
                     {c.role}

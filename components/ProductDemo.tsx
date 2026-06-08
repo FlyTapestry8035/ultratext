@@ -2,32 +2,7 @@
 
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
-
-const inputs = [
-  { name: "Gmail", color: "#EA4335" },
-  { name: "Slack", color: "#E01E5A" },
-  { name: "Google Drive", color: "#1FA463" },
-  { name: "Google Workspace", color: "#4285F4" },
-  { name: "Microsoft 365", color: "#D83B01" },
-  { name: "Calendar", color: "#34A853" },
-  { name: "Zoom", color: "#2D8CFF" },
-  { name: "QuickBooks", color: "#2CA01C" },
-  { name: "Stripe", color: "#635BFF" },
-  { name: "Notion", color: "#E6E6E6" },
-  { name: "HubSpot", color: "#FF7A59" },
-  { name: "ChatGPT", color: "#10A37F" },
-  { name: "Claude", color: "#D97757" },
-  { name: "Gemini", color: "#8E7BEF" },
-];
-
-const outputs = [
-  "AI Agents",
-  "Chatbots",
-  "Automations",
-  "Workflows",
-  "Executives",
-  "Teams",
-];
+import { inputs, outputs } from "./data";
 
 const W = 1200;
 const H = 780;
@@ -59,7 +34,7 @@ export default function ProductDemo() {
     <section id="demo" className="relative px-4 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mb-10 text-center sm:mb-14">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-accent-soft/70">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-white/35">
             Live context
           </p>
           <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-gradient sm:text-5xl">
@@ -69,25 +44,36 @@ export default function ProductDemo() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="glass-strong relative overflow-hidden rounded-3xl p-3 shadow-2xl shadow-black/50 sm:p-6">
-            <div className="bg-field pointer-events-none absolute inset-0 opacity-60" />
-            <div className="relative">
-              <FlowGraph />
+          <div className="window-chrome relative overflow-hidden">
+            {/* title bar */}
+            <div className="flex items-center gap-3 border-b border-white/[0.06] px-4 py-3">
+              <div className="flex gap-1.5">
+                <span className="h-3 w-3 rounded-full bg-[#ff5f57]/80" />
+                <span className="h-3 w-3 rounded-full bg-[#febc2e]/80" />
+                <span className="h-3 w-3 rounded-full bg-[#28c840]/80" />
+              </div>
+              <span className="text-[12.5px] text-white/40">
+                Context graph · live
+              </span>
             </div>
 
-            {/* legend */}
-            <div className="relative mt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 px-2 pb-1 text-xs text-white/40 sm:mt-5">
-              <span className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" /> Sources
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-white" /> Ultra Text
-                context layer
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />{" "}
-                Destinations
-              </span>
+            <div className="relative p-3 sm:p-6">
+              <FlowGraph />
+
+              {/* legend */}
+              <div className="relative mt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 px-2 pb-1 text-xs text-white/40 sm:mt-5">
+                <span className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/50" /> Sources
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white" /> Ultra Text
+                  context layer
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />{" "}
+                  Destinations
+                </span>
+              </div>
             </div>
           </div>
         </Reveal>
@@ -112,17 +98,17 @@ function FlowGraph() {
     >
       <defs>
         <linearGradient id="lineIn" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#7c8cff" stopOpacity="0.05" />
-          <stop offset="100%" stopColor="#7c8cff" stopOpacity="0.5" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.04" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0.32" />
         </linearGradient>
         <linearGradient id="lineOut" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#34d399" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#34d399" stopOpacity="0.05" />
+          <stop offset="0%" stopColor="#8a96e8" stopOpacity="0.45" />
+          <stop offset="100%" stopColor="#8a96e8" stopOpacity="0.04" />
         </linearGradient>
         <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#9aa6ff" />
-          <stop offset="60%" stopColor="#5b6cff" />
-          <stop offset="100%" stopColor="#3a47d6" />
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="55%" stopColor="#cfcfd6" />
+          <stop offset="100%" stopColor="#8e8e98" />
         </radialGradient>
         <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="6" result="b" />
@@ -159,7 +145,7 @@ function FlowGraph() {
 
       {/* traveling particles (inputs -> core) */}
       {inputs.map((src, i) => (
-        <circle key={`id-${i}`} r={3} fill="#a5b0ff">
+        <circle key={`id-${i}`} r={3} fill="#e4e4e8">
           <animateMotion
             dur={`${2.6 + (i % 4) * 0.35}s`}
             begin={`${(i * 0.22).toFixed(2)}s`}
@@ -180,7 +166,7 @@ function FlowGraph() {
 
       {/* traveling particles (core -> outputs) */}
       {outputs.map((_, j) => (
-        <circle key={`od-${j}`} r={3.5} fill="#5eead4">
+        <circle key={`od-${j}`} r={3.5} fill="#b3bbf0">
           <animateMotion
             dur={`${2.2 + (j % 3) * 0.4}s`}
             begin={`${(j * 0.3 + 0.4).toFixed(2)}s`}
@@ -240,8 +226,8 @@ function FlowGraph() {
               width={210}
               height={38}
               rx={19}
-              fill="rgba(52,211,153,0.06)"
-              stroke="rgba(52,211,153,0.22)"
+              fill="rgba(138,150,232,0.07)"
+              stroke="rgba(138,150,232,0.28)"
               strokeWidth={1}
             />
             <text
@@ -265,8 +251,8 @@ function FlowGraph() {
           cx={CENTER.x}
           cy={CENTER.y}
           r={92}
-          fill="rgba(124,140,255,0.06)"
-          stroke="rgba(124,140,255,0.3)"
+          fill="rgba(255,255,255,0.05)"
+          stroke="rgba(255,255,255,0.25)"
           strokeWidth={1}
           animate={{ r: [92, 100, 92], opacity: [0.6, 0.25, 0.6] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -291,7 +277,7 @@ function FlowGraph() {
         x={CENTER.x}
         y={CENTER.y - 4}
         textAnchor="middle"
-        fill="#fff"
+        fill="#0a0a0a"
         fontSize={22}
         fontWeight={700}
         letterSpacing="-0.5"
@@ -303,7 +289,7 @@ function FlowGraph() {
         x={CENTER.x}
         y={CENTER.y + 22}
         textAnchor="middle"
-        fill="rgba(255,255,255,0.9)"
+        fill="rgba(10,10,10,0.85)"
         fontSize={22}
         fontWeight={700}
         letterSpacing="-0.5"
