@@ -7,17 +7,17 @@ export default function FinalCTA() {
   return (
     <section id="cta" className="relative px-6 py-32">
       <div className="mx-auto max-w-5xl">
-        <div className="glass-strong relative overflow-hidden rounded-[2rem] px-8 py-20 text-center sm:px-16 sm:py-28">
-          <div className="bg-field absolute inset-0 opacity-80" />
+        <div className="window-chrome relative overflow-hidden px-8 py-20 text-center sm:px-16 sm:py-28">
+          <div className="glow-hero absolute inset-x-0 top-0 h-2/3 opacity-80" />
           <motion.div
             aria-hidden
-            className="pointer-events-none absolute -inset-40 -z-0 opacity-40"
+            className="pointer-events-none absolute -inset-40 -z-0 opacity-25"
             style={{
               background:
-                "conic-gradient(from 0deg, transparent, rgba(124,140,255,0.25), transparent 40%)",
+                "conic-gradient(from 0deg, transparent, rgba(255,255,255,0.18), transparent 40%)",
             }}
             animate={{ rotate: 360 }}
-            transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
           />
 
           <div className="relative">

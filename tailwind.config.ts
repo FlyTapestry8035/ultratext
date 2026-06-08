@@ -9,15 +9,17 @@ const config: Config = {
     extend: {
       colors: {
         ink: {
-          950: "#050507",
-          900: "#0a0a0f",
-          800: "#101018",
-          700: "#16161f",
+          950: "#000000",
+          900: "#09090b",
+          800: "#0d0d0f",
+          700: "#141417",
         },
+        panel: "#0d0d0f",
+        stroke: "rgba(255,255,255,0.08)",
         accent: {
-          DEFAULT: "#7c8cff",
-          soft: "#a5b0ff",
-          glow: "#5b6cff",
+          DEFAULT: "#8a96e8",
+          soft: "#b3bbf0",
+          glow: "#6b78d6",
         },
       },
       fontFamily: {

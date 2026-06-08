@@ -30,7 +30,7 @@ export default function Problem() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="relative mt-14 h-[420px] w-full overflow-hidden rounded-3xl border border-white/5 bg-ink-900/40 sm:h-[460px]">
+          <div className="window-chrome relative mt-14 h-[420px] w-full overflow-hidden sm:h-[460px]">
             <div className="grid-lines absolute inset-0 opacity-50" />
 
             {/* lonely AI in the middle, unable to connect */}
