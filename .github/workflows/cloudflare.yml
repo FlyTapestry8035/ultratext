@@ -1,0 +1,52 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+      - "claude/**"
+  pull_request:
+    branches:
+      - main
+
+# Required repository secrets (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN   — token with the "Cloudflare Pages: Edit" permission
+#                            (My Profile → API Tokens → Create Token)
+#   CLOUDFLARE_ACCOUNT_ID  — Cloudflare dashboard → right sidebar "Account ID"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Guard on Cloudflare secrets
+        id: guard
+        run: |
+          if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
+            echo "has_secrets=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::CLOUDFLARE_API_TOKEN not set — built the site but skipping deploy. Add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID as repo secrets to enable Cloudflare Pages deploys."
+          else
+            echo "has_secrets=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deploy to Cloudflare Pages
+        if: steps.guard.outputs.has_secrets == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Creates the "ultratext" Pages project on first run if it doesn't exist.
+          command: pages deploy out --project-name=ultratext --branch=${{ github.head_ref || github.ref_name }}
